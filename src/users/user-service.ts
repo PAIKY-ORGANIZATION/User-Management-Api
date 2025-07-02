@@ -1,4 +1,4 @@
-import {IUserService, User} from 'user-manager-types'
+import {IUserService, User} from 'user-manager-sdk'
 import { JwtTokenProvider } from './providers/jwt-provider.js';
 import { BcryptHasher } from './providers/hash-provider.js';
 import { PrismaUserRepository } from './providers/prisma-provider.js';
@@ -8,7 +8,7 @@ import { BadRequest } from 'custom-exceptions-express';
 export class UserService implements IUserService{
     constructor(public jwtProvider: JwtTokenProvider, public bcryptHasher: BcryptHasher, public prismaRepository: PrismaUserRepository ){}
 
-    async register (email: string, username: string, password: string): Promise<{user: User}>{
+    async register (email: string, username: string, password: string): Promise<User>{
 
         const user = await this.prismaRepository.findByEmail(email)
 
@@ -18,7 +18,7 @@ export class UserService implements IUserService{
 
         const created =  await this.prismaRepository.create(crypto.randomUUID(), email, username, passwordHash)
 
-        return {user: created}
+        return created
     }
 
     async login(email: string, password: string): Promise<{token: string;}>{

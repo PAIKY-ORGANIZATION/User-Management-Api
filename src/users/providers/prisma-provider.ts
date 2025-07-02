@@ -1,6 +1,6 @@
 import { BadRequest } from "custom-exceptions-express"
 import {PrismaClient} from "../../generated/prisma/index.js"
-import {User} from 'user-manager-types'
+import {User} from 'user-manager-sdk'
 
 export class PrismaUserRepository  {
     constructor(private readonly prisma: PrismaClient){}
@@ -14,18 +14,12 @@ export class PrismaUserRepository  {
         
         if(!user) return null
 
-        return new User(user.id, user.email, user.username, user.password)
-                
+        return user
     }
 
     async create(id: string, email: string, username: string, password: string): Promise<User>{
         const dbUser = await this.prisma.user.create({
-            data: {
-                id,
-                email,
-                username,
-                password
-            }
+            data: { id, email, username, password}
         })
         if(!dbUser){
             throw new BadRequest('User not found')
