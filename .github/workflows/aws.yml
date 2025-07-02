@@ -27,7 +27,7 @@ jobs:
 
             cd ~/vsCodeMain
             #* If the is no desired-folder with .git, it means the repo doesn't exist so we clone it INTO A DESIRED FOLDER NAME.
-            [ -d "UNIQUE_APP_NAME/.git" ] || git clone git@github.com:$REPO_PATH.git "UNIQUE_APP_NAME" #!You need to use a key that DOESN'T USE A PASSPHRASE.
+            [ -d "$UNIQUE_APP_NAME/.git" ] || git clone git@github.com:$REPO_PATH.git "UNIQUE_APP_NAME" #!You need to use a key that DOESN'T USE A PASSPHRASE.
             cd "$UNIQUE_APP_NAME"
             git fetch origin
             git merge origin/master
