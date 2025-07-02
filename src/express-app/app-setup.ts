@@ -10,7 +10,7 @@ import { BcryptHasher } from '../users/providers/hash-provider.js';
 import { PrismaUserRepository } from '../users/providers/prisma-provider.js';
 import { prisma } from './lib/db.js';
 import { reqLogger } from 'req-logger-express';
-
+import cookieParser from 'cookie-parser';
 const app = express();
 
 

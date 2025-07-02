@@ -17,5 +17,13 @@ export const loginSchema = z.object({
     })
 });
 
+export const authenticateSchema = z.object({
+    body: z.object({
+        cookie: z.string().nonempty('Cookie is required')
+    })
+})
+
+
 export type SignupSchemaType = z.infer<typeof signupSchema>['body']
 export type LoginSchemaType = z.infer<typeof loginSchema>['body']
+export type AuthenticateSchemaType = z.infer<typeof authenticateSchema>['body']

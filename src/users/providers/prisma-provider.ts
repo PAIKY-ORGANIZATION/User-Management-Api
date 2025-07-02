@@ -11,10 +11,8 @@ export class PrismaUserRepository  {
                 email
             }
         })
-
-        if(!user){
-            throw new BadRequest('User already exists')
-        }
+        
+        if(!user) return null
 
         return new User(user.id, user.email, user.username, user.password)
                 

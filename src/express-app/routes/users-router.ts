@@ -1,7 +1,9 @@
 import { Router } from "express";
 import { validate } from "../middleware/validateBody.js";
-import { signin, signup, triggerBadRequest } from "../controllers/users/users.js";
 import { loginSchema, signupSchema } from "../zodSchemas/user-schema.js";
+import { signup } from "../controllers/SDK/signup.js";
+import { signin } from "../controllers/SDK/signin.js";
+import { authenticate } from "../controllers/SDK/authenticate.js";
 //*types:
 
 
@@ -15,5 +17,6 @@ router.post('/signup', validate(signup, signupSchema) )
 
 router.post('/signin', validate(signin, loginSchema))
 
-router.post('/logout', validate(triggerBadRequest))
+router.post('/authenticate', validate(authenticate))
+
 
