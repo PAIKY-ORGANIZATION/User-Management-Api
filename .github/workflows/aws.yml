@@ -11,8 +11,7 @@ jobs:
       # - name: ENV TEST
       #   run: echo "$REPO_PATH" && echo "$REPO_NAME"
       - name: "Print host"
-        run: echo "${{secrets.EC2_USER}}"
-        run: echo "${{secrets.EC2_HOST}}"
+        run: echo "${{secrets.EC2_USER}}" && echo "${{secrets.EC2_HOST}}"
       - name: Deploy over SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
