@@ -37,7 +37,6 @@ jobs:
             #* Build and Run Docker
             #$ Docker compose works directory-wise, so this is safe as long as we are in the correct directory. No need for a unique image name.
 
-
             sudo docker compose down
             sudo docker compose up --build --abort-on-container-exit --exit-code-from test test/ #* This will cause the GitHub Action to fail if the Test fails. Notice how we are not using "-d". We DO NEED to use -d below
 
