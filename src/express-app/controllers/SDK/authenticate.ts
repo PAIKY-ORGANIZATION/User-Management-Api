@@ -9,6 +9,7 @@ export const authenticate = async(req: Request<{}, {}, AuthenticateSchemaType>, 
 	try{ //$ jwt throws an error, it doesn't return null. That is why we use try/catch 
 		const payload = userService.verifyToken(cookie)
 		console.log({payload});		
+		res.send({ message: 'Success', data: payload });
 	}catch(e){
 		throw new Unauthorized('Invalid token')	
 	}
