@@ -15,5 +15,5 @@ router.post('/signup', validate(signup, signupSchema) )
 
 router.post('/signin', validate(signin, loginSchema))
 
-router.post('/logout', triggerBadRequest)
+router.post('/logout', validate(triggerBadRequest))
 

@@ -19,28 +19,15 @@ export const validate = (controller: ControllerFunction, schema?: AnyZodObject, 
 
 			next();
 		} catch (e) {
-			
 			console.log(e);
-			
-
 			let exception;
 			if (e instanceof AppError) {
+
 				exception = e;
 			} else if (e instanceof ZodError) {
 				const messages = Object.values(e.flatten().fieldErrors).flat();
 				exception = new UnprocessableEntity(messages);
 			} 
-            // else if (e instanceof AxiosError) {
-
-			// 	const status = e.response?.status || 500;
-			// 	const message = e.response?.data || 'Axios request failed';
-
-			// 	if (status === 404) {
-			// 		exception = new BadRquest(message);
-			// 	} else {
-			// 		exception = new InternalException('Axios error',status,message);
-			// 	}
-			// } 
             else {
 				exception = new InternalException('Internal server error', (e as any).message);
 			}
