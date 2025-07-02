@@ -22,7 +22,9 @@ jobs:
 
           script: |
             #* Declaring variables for EC2 (it doesn't have access to "env")
+
             UNIQUE_APP_NAME="${{ secrets.UNIQUE_APP_NAME }}"  #! UNIQUE_APP_NAME must be all lowercase and without underscores for Docker to accept it.
+            #! UNIQUE_APP_NAME must be set per-repository
             #! If you are using Docker COMPOSE,  you don't need a unique app name for the image name. However, you still need a unique directory name.
             REPO_PATH="${{ github.repository }}"  #$ Example: # gives "dev-miguel/repo-name". We will use this to clone the repo initially. 
             DOCKER_PORT="${{ secrets.DOCKER_PORTS }}"  #! I know it's not being used here
@@ -37,6 +39,8 @@ jobs:
             #* Write secrets into ./config/shared.env
             echo "PORT=3003" >> ./config/shared.env #$ will create shared.env automatically as long as the ./config directory already exists.
             echo "JWT_SECRET=${{secrets.JWT_SECRET}}" >> ./config/shared.env
+            #! JWT_SECRET must be set per-repository
+
 
 
             #* Build and Run Docker
