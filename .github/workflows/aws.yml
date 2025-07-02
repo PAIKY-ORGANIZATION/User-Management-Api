@@ -22,7 +22,7 @@ jobs:
             #* Declaring variables for EC2 (it doesn't have access to "env")
             UNIQUE_APP_NAME="${{secrets.UNIQUE_APP_NAME}}"
             #! If you are using Docker COMPOSE,  you don't need a unique app name for the image name. However, you still need a unique directory name.
-            REPO_PATH="{{github.repository}}" #$ Example: # gives "dev-miguel/repo-name". We will use this to clone the repo initially. 
+            REPO_PATH="{{ github.repository }}" #$ Example: # gives "dev-miguel/repo-name". We will use this to clone the repo initially. 
             DOCKER_PORT="${{ secrets.DOCKER_PORTS }}"  #! I know it's not being used here
 
             cd ~/vsCodeMain
@@ -32,7 +32,7 @@ jobs:
             git fetch origin
             git merge origin/master
             echo "PORT=3002" >> ./config/shared.env #$ will create shared.env automatically as long as the ./config directory already exists.
-            echo "JWT_SECRET=${{secrets.JWT_SECRET}}" >> ./config/shared.env
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> ./config/shared.env
 
             #* Build and Run Docker
             #$ Docker compose works directory-wise, so this is safe as long as we are in the correct directory. No need for a unique image name.
