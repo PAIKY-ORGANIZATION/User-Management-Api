@@ -1,4 +1,4 @@
-import {IUserService, User} from 'user-manager-sdk'
+import {IUserService, JwtPayloadBack, LoginRequestBody, SignupRequestBody, User, } from 'user-manager-sdk'
 import { JwtTokenProvider } from './providers/jwt-provider.js';
 import { BcryptHasher } from './providers/hash-provider.js';
 import { PrismaUserRepository } from './providers/prisma-provider.js';
@@ -8,7 +8,7 @@ import { BadRequest } from 'custom-exceptions-express';
 export class UserService implements IUserService{
     constructor(public jwtProvider: JwtTokenProvider, public bcryptHasher: BcryptHasher, public prismaRepository: PrismaUserRepository ){}
 
-    async register (email: string, username: string, password: string): Promise<User>{
+    async register ({email, username, password}: SignupRequestBody): Promise<User>{
 
         const user = await this.prismaRepository.findByEmail(email)
 
@@ -21,7 +21,7 @@ export class UserService implements IUserService{
         return created
     }
 
-    async login(email: string, password: string): Promise<{token: string;}>{
+    async login({email, password}: LoginRequestBody): Promise<{token: string;}>{
         const user = await  this.prismaRepository.findByEmail(email)
 
         if(!user) throw new BadRequest('User already exists')
