@@ -19,7 +19,6 @@ jobs:
           key: ${{secrets.EC2_SSH_PRIVATE_KEY}}
           passphrase: ${{ secrets.EC2_SSH_PRIVATE_KEY_PASSPHRASE }} #$ Only if required.
 
-
           script: |
             #* Declaring variables for EC2 (it doesn't have access to "env")
             UNIQUE_APP_NAME="${{secrets.UNIQUE_APP_NAME}}"
