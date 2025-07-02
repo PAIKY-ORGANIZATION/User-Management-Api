@@ -2,7 +2,25 @@ services:
   backend:
     build: .
     ports:
-      - "3001:3001"
-    command: npm run dev_docker
+      - "3003:3003"
+    command: sh -c "npx prisma migrate reset --force && npx prisma generate && npx prisma migrate dev && npm run dev_docker"
+    depends_on:
+      - db
     volumes:
-      - "./src:/app/src:ro"
+      - "./src:/app/src"
+    env_file:
+      - ./prisma/docker.env
+
+  db:
+    image: postgres
+    ports:
+      - "5433:5432" #! "5433" is because there would be a conflicts  with other databases in AWS
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=users-api
+
+  
+  test:
+    build: .
+    command: sh -c "npx prisma migrate reset --force && npx prisma migrate dev --name init && npm run test_docker"

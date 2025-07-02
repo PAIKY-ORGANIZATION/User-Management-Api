@@ -5,14 +5,9 @@
     "main": "NO-MAIN-SET",
     "scripts": {
         "build": "tsc",
-        "test": "ENVIRONMENT=test vitest",
+        "test_docker": "ENVIRONMENT=docker vitest",
         "dev_local": "ENVIRONMENT=local npx nodemon",
-        "dev_docker": "ENVIRONMENT=docker npx nodemon",
-        "README!!!!!!!!!!!": "The following scripts work without nodemon configuration file.",
-        "README2!!!!!!!!!!!": "If you want to run them remove the node mod configuration file ENTIRELY ⚠️",
-        "README3": "If you plan on only running one single file it is better to have the configuration file separately.",
-        "dev1": "env-cmd -f ./config/dev.env npx nodemon --watch src --exec \"npx tsx src/app-listens.ts\"",
-        "dev2": "env-cmd -f ./config/dev.env npx nodemon --watch src --exec \"npx tsx src/\""
+        "dev_docker": "ENVIRONMENT=docker npx nodemon"
     },
     "keywords": [],
     "author": "",
