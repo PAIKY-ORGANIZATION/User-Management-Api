@@ -9,33 +9,21 @@ export class UserService implements IUserService{
 
     async register (email: string, username: string, password: string): Promise<{user: User}>{
 
-        const existingUser = await this.prismaRepository.findByEmail(email)
-
-        if(existingUser){
-            throw new Error('User already exists')
-        }
+        await this.prismaRepository.findByEmail(email)
 
         const passwordHash = await this.bcryptHasher.hash(password)
 
-        const user = new User(crypto.randomUUID(), email, username, passwordHash)
-
-        const created =  await this.prismaRepository.create(user)
+        const created =  await this.prismaRepository.create(crypto.randomUUID(), email, username, passwordHash)
 
         return {user: created}
     }
 
     async login(email: string, password: string): Promise<{token: string;}>{
         const user = await  this.prismaRepository.findByEmail(email)
-         if(!user){
-            throw new Error('User not found')
-        }
-        const passwordMatch = await this.bcryptHasher.compare(password, user.password)
+        
+        await this.bcryptHasher.compare(password, user!.password)
 
-        if(!passwordMatch){
-            throw new Error('Invalid password')
-        }
-
-        const token = this.jwtProvider.generate({id: user.id})
+        const token = this.jwtProvider.generate({id: user!.id})
 
         return {token}
     }

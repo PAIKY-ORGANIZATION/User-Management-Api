@@ -1,6 +1,6 @@
+import { AppError, InternalException, UnprocessableEntity } from 'custom-exceptions-express';
 import { NextFunction, Request, Response } from 'express';
 import { AnyZodObject, ZodError } from 'zod';
-import { AppError, InternalException, UnprocessableEntity } from '../lib/exceptions.js';
 
 //prettier-ignore
 type ControllerFunction = (req: Request<any>, res: Response,next: NextFunction) => Promise<void>;
@@ -42,7 +42,7 @@ export const validate = (controller: ControllerFunction, schema?: AnyZodObject, 
 			// 	}
 			// } 
             else {
-				exception = new InternalException('Internal server error', 500,(e as any).message);
+				exception = new InternalException('Internal server error', (e as any).message);
 			}
 
 			next(exception);

@@ -7,7 +7,10 @@ export class BcryptHasher  {
         return bcrypt.hash(password, this.saltRounds);
     }
 
-    async compare(password: string, hash: string): Promise<boolean> {
-        return bcrypt.compare(password, hash);
+    async compare(password: string, hash: string){
+        const passwordMatch = bcrypt.compare(password, hash);
+        if(!passwordMatch){
+            throw new Error('Invalid password')
+        }
     }
 }

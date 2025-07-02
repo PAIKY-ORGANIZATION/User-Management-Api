@@ -1,22 +1,25 @@
 import './bootstrap.js' // This  needs to be imported at the top in order for environment variables to be loaded successfully.
 
 import express from 'express';
-import { errorMiddleware } from './middleware/error-middleware.js';
+import { errorMiddleware } from 'custom-exceptions-express';
 import { reqLogger } from './middleware/req-logger.js';
 import { router as usersRouter } from './routes/users-router.js';
 import { router as loggerRouter } from './routes/logger-router.js';
 import { UserService } from '../users/user-service.js';
 import { JwtTokenProvider } from '../users/providers/jwt-provider.js';
+import { BcryptHasher } from '../users/providers/hash-provider.js';
+import { PrismaUserRepository } from '../users/providers/prisma-provider.js';
+import { prisma } from './lib/db.js';
 
 const app = express();
 
 
 
-
-const jwtTokenProvider = new JwtTokenProvider()
-
-
-const userService = new UserService()
+//* Initialize all objects
+const jwtTokenProvider = new JwtTokenProvider(process.env.JWT_SECRET!)
+const bcryptHasher = new BcryptHasher()
+const prismaUserRepository = new PrismaUserRepository(prisma)
+export const userService = new UserService(jwtTokenProvider, bcryptHasher, prismaUserRepository)
 
 
 app.use(express.json());
