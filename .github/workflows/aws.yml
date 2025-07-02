@@ -20,7 +20,7 @@ jobs:
 
           script: |
             #* Declaring variables for EC2 (it doesn't have access to "env")
-            UNIQUE_APP_NAME="${{secrets.UNIQUE_APP_NAME}}"
+            UNIQUE_APP_NAME="${{ secrets.UNIQUE_APP_NAME }}"
             #! If you are using Docker COMPOSE,  you don't need a unique app name for the image name. However, you still need a unique directory name.
             REPO_PATH="{{ github.repository }}" #$ Example: # gives "dev-miguel/repo-name". We will use this to clone the repo initially. 
             DOCKER_PORT="${{ secrets.DOCKER_PORTS }}"  #! I know it's not being used here
