@@ -10,6 +10,10 @@ const setENV = ()=>{
     //$ These are shared between all environments, example: PORT
     dotenv.config({path: 'config/shared.env'})
 
+    if(process.env.NODE_ENV === 'test'){ //¡ THIS IS NEW
+        dotenv.config({path: 'config/test.env'})
+    }
+
 
      //* Check for required environment variables or throw stop execution.   
     const requiredVars = ['PORT', 'JWT_SECRET']
