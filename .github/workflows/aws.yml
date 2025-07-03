@@ -43,7 +43,6 @@ jobs:
 
 
 
-
             #* Build and Run Docker
             #$ Docker compose works directory-wise, so this is safe as long as we are in the correct directory. No need for a unique image name.
             sudo docker compose down
