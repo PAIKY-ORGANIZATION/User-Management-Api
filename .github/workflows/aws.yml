@@ -53,7 +53,7 @@ jobs:
             EXIT_CODE=$? #$ This captures the exit code of the last command.
             if [ $EXIT_CODE -ne 0 ]; then #$ "-ne" means "not equal"
               echo "Test container failed with exit code $EXIT_CODE"
-              exit $EXIT_CODE #$ This exits the GitHub Action with the same exit code.
+              exit $EXIT_CODE #$ This exits the ENTIRE GitHub Action with the same exit code.
             fi
 
 
