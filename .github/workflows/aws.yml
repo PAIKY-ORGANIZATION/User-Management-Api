@@ -49,9 +49,13 @@ jobs:
             sudo docker compose down
             sudo docker compose up --build --abort-on-container-exit --exit-code-from test test #* This will cause the GitHub Action to fail if the Test fails. Notice how we are not using "-d". We DO NEED to use -d below
 
-            EXIT_CODE=$?            
-            sudo docker compose down
-            exit $EXIT_CODE
+            #* Handling docker-test errors
+            EXIT_CODE=$? #$ This captures the exit code of the last command.
+            if [ $EXIT_CODE -ne 0 ]; then #$ "-ne" means "not equal"
+              echo "Test container failed with exit code $EXIT_CODE"
+              exit $EXIT_CODE #$ This exits the GitHub Action with the same exit code.
+            fi
+
 
             sudo docker compose up --build -d
            
