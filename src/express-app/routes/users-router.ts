@@ -15,6 +15,14 @@ router.post('/login', validate(login, loginSchema))
 
 router.post('/authenticate', validate(authenticate))
 
+
+
+
+
+
+
+
+
 //* About zod schemas from "user-manager-sdk":
 //¡ If you are importing the zod schemas from  "user-manager-sdk" and you are running this code along the LINKED version of ""user-manager-sdk", this will no be  detected as a ZodError. Instead it will be an internal server error.
 // ¡ Run this code with  \ npm i "user-manager-sdk" \  instead of npm link "user-manager-sdk" for this section to work or declare the zod in this server

@@ -6,7 +6,11 @@ import crypto from 'node:crypto'
 import { BadRequest } from 'custom-exceptions-express';
 
 export class UserService implements IUserService{
-    constructor(public jwtProvider: JwtTokenProvider, public bcryptHasher: BcryptHasher, public prismaRepository: PrismaUserRepository ){}
+    constructor(
+        public jwtProvider: JwtTokenProvider,
+        public bcryptHasher: BcryptHasher,
+        public prismaRepository: PrismaUserRepository
+    ){}
 
     async register ({email, username, password}: SignupRequestBody): Promise<User>{
 
@@ -37,3 +41,4 @@ export class UserService implements IUserService{
         return this.jwtProvider.verify(token)
     }
 }
+
