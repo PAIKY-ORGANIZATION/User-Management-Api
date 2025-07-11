@@ -6,6 +6,7 @@
     "scripts": {
         "build": "tsc",
         "test_docker": "ENVIRONMENT=docker vitest",
+        "test_local": "ENVIRONMENT=local vitest",
         "dev_local": "ENVIRONMENT=local npx nodemon",
         "dev_docker": "ENVIRONMENT=docker npx nodemon"
     },

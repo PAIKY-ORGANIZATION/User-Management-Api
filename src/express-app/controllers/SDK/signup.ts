@@ -7,7 +7,7 @@ export const signup = async (req: Request<{}, {}, SignupRequestBody>,res: Respon
 
 	const user = await userService.register(req.body);
 
-	const response: SignupResponse = { message: 'Success', data: user } //$ The class"user" will be used as an object that looks like: { id: string, email: string, username: string, password: string }
+	const response: SignupResponse = { message: 'Success',  success: true, data: user } //$ The class"user" will be used as an object that looks like: { id: string, email: string, username: string, password: string }
 
 
 	res.send( response );

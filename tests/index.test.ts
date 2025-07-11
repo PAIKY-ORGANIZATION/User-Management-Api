@@ -11,8 +11,6 @@ beforeAll(async () => {
 });
 
 
-
-
 test('Should load test.env', ()=>{
     expect(process.env.TEST_VAR).toBe('TESTING');
 })
@@ -24,6 +22,7 @@ test('Should not fail for /signup', async() => {
     //
     expect(result.body).toEqual({
         message: 'Success',
+        success: true,
         data: {id: expect.any(String) , username: 'Dwati', email: 'Dwati@email.com', password: expect.any(String)}
     });
 });
@@ -37,6 +36,7 @@ test('Should not fail for /login', async() => {
     
     expect(result.body).toEqual({
         message: 'Success',
+        success: true,
         data: {token: expect.any(String)}
     });
     token = result.body.data.token
