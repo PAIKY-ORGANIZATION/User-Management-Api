@@ -9,8 +9,7 @@ import { JwtTokenProvider } from '../users/providers/jwt-provider.js';
 import { BcryptHasher } from '../users/providers/hash-provider.js';
 import { PrismaUserRepository } from '../users/providers/prisma-provider.js';
 import { prisma } from './lib/db.js';
-import { reqLogger } from 'req-logger-express';
-import cookieParser from 'cookie-parser';
+import reqLoggerExpress from 'req-logger-express';
 const app = express();
 
 
@@ -25,7 +24,7 @@ export const userService = new UserService(jwtTokenProvider, bcryptHasher, prism
 app.use(express.json());
 
 //Custom middleware
-app.use(reqLogger)
+app.use(reqLoggerExpress)
 
 //Routes
 app.use('/api',  usersRouter);
