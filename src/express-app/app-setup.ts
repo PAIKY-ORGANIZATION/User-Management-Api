@@ -25,7 +25,7 @@ export const userService = new UserService(jwtTokenProvider, bcryptHasher, prism
 app.use(express.json());
 
 //Custom middleware
-app.use(reqLoggerExpress)
+app.use(reqLoggerExpress('User_Manager_API'));
 
 //Routes
 app.use('/api',  usersRouter);
