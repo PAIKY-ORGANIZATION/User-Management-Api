@@ -35,7 +35,6 @@ jobs:
             cd "$UNIQUE_APP_NAME" 
             git fetch origin 
             git merge origin/master
-
             #* Write secrets into ./config/shared.env
             echo "JWT_SECRET=${{secrets.JWT_SECRET}}" >> ./config/shared.env
             #! JWT_SECRET must be set per-repository
@@ -56,5 +55,5 @@ jobs:
             fi
 
 
-            sudo docker compose up --build -d
+            sudo docker compose up --build -d db backend #$ Specify services to avoid running tests again.
            
