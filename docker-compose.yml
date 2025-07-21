@@ -22,6 +22,7 @@ services:
     # volumes:
       #! It seems like we don't have to specify the volume for this one and it will default to a default
   
+  
   test:
     build: .
     command: sh -c "npx prisma migrate reset --force && npx prisma migrate dev --name init && npm run test_docker"
