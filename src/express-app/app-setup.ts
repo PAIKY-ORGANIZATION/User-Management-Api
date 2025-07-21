@@ -22,6 +22,7 @@ const prismaUserRepository = new PrismaUserRepository(prisma)
 export const userService = new UserService(jwtTokenProvider, bcryptHasher, prismaUserRepository)
 
 
+
 app.use(express.json());
 
 //Custom middleware
