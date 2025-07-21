@@ -37,7 +37,6 @@ jobs:
             git merge origin/master
 
             #* Write secrets into ./config/shared.env
-            echo "PORT=3003" >> ./config/shared.env #$ will create shared.env automatically as long as the ./config directory already exists.
             echo "JWT_SECRET=${{secrets.JWT_SECRET}}" >> ./config/shared.env
             #! JWT_SECRET must be set per-repository
 
