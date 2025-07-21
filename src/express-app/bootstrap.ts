@@ -16,7 +16,7 @@ const setENV = ()=>{
 
 
      //* Check for required environment variables or throw stop execution.   
-    const requiredVars = ['PORT', 'JWT_SECRET']
+    const requiredVars = [ 'JWT_SECRET']
 
     requiredVars.forEach((varName)=>{
         if(!process.env[varName]){
