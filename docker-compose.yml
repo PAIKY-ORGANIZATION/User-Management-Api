@@ -12,6 +12,7 @@ services:
       - ./prisma/docker.env
 
 
+
   db:
     image: postgres
     ports:
