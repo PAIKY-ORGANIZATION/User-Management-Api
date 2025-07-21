@@ -2,7 +2,7 @@ services:
   backend:
     build: .
     ports:
-      - "3003:3003"
+      - "3003:3001"
     command: sh -c "npx prisma migrate reset --force && npx prisma generate && npx prisma migrate dev && npm run dev_docker"
     depends_on:
       - db
