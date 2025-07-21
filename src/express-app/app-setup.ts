@@ -14,6 +14,7 @@ const app = express();
 
 
 
+
 //* Initialize all objects
 const jwtTokenProvider = new JwtTokenProvider(process.env.JWT_SECRET!)
 const bcryptHasher = new BcryptHasher()
