@@ -35,6 +35,8 @@ jobs:
             cd "$UNIQUE_APP_NAME" 
             git fetch origin 
             git merge origin/master
+
+            rm ./config/shared.env || true #* Delete previous environment variables for safety
             #* Write secrets into ./config/shared.env
             echo "JWT_SECRET=${{secrets.JWT_SECRET}}" >> ./config/shared.env
             #! JWT_SECRET must be set per-repository
